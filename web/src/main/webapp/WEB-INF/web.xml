@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Customer Area</web-resource-name>
+            <url-pattern>/customer/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>BANK_OFFICER</role-name>
+            <role-name>CUSTOMER</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Bank Officer Area</web-resource-name>
+            <url-pattern>/officer/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>BANK_OFFICER</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>HR Department Area</web-resource-name>
+            <url-pattern>/hr_dept/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>HR_DEPARTMENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>CUSTOMER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>BANK_OFFICER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>HR_DEPARTMENT</role-name>
+    </security-role>
+
+    <error-page>
+        <exception-type>lk.jiat.app.core.exception.UnableToRetrieveUserIdException</exception-type>
+        <location>/unableToRetrieveUserIdException.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>jakarta.ejb.EJBAccessException</exception-type>
+        <location>/unauthorizedAccessException.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>jakarta.servlet.ServletException</exception-type>
+        <location>/invalidPathRequestException.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/unauthorizedAccessException.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>405</error-code>
+        <location>/invalidPathRequestException.jsp</location>
+    </error-page>
+</web-app>

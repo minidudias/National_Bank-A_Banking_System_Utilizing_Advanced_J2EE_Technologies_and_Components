@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="AppPU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>j2ee_national_bank_jdbc</jta-data-source>
+        <class>lk.jiat.app.core.model.User</class>
+        <class>lk.jiat.app.core.model.AccountNumberSequence</class>
+        <class>lk.jiat.app.core.model.Account</class>
+        <class>lk.jiat.app.core.model.Transaction</class>
+        <class>lk.jiat.app.core.model.ScheduledTransaction</class>
+        <class>lk.jiat.app.core.model.MonthlyBalanceReport</class>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
